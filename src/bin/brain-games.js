@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import sayHello from "..";
+import sayHello from '..';
 
 sayHello();
