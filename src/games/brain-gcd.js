@@ -19,7 +19,6 @@ const gameFn = () => {
   const randomNumberTwo = getRandomNumber(100);
   const question = `${randomNumberOne} ${randomNumberTwo}`;
   const answer = getActualAnswer(randomNumberOne, randomNumberTwo).toString();
-  console.log('answer', answer);
 
   return { question, answer };
 };
