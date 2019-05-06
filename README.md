@@ -6,12 +6,12 @@
 
 # Запуск Brain Games
 
-<a href="https://asciinema.org/a/244601"><img src="https://asciinema.org/a/244601.png" width="500"/></a>
+<a href="https://asciinema.org/a/244605"><img src="https://asciinema.org/a/244605.png" width="500"/></a>
 
 # Запуск игры Brain Even
 
-<a href="https://asciinema.org/a/244602"><img src="https://asciinema.org/a/244602.png" width="500"/></a>
+<a href="https://asciinema.org/a/244606"><img src="https://asciinema.org/a/244606.png" width="500"/></a>
 
 # Запуск игры Brain Calc
 
-<a href="https://asciinema.org/a/244603"><img src="https://asciinema.org/a/244603.png" width="500"/></a>
+<a href="https://asciinema.org/a/244607"><img src="https://asciinema.org/a/244607.png" width="500"/></a>
