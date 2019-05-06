@@ -1,8 +1,8 @@
 import start, { getRandomNumber } from '..';
 
-const RANDOM_NUMBER_RANGE = 5;
+const RANDOM_NUMBER_RANGE = 100;
 const PROGRESSION_STEP = 2;
-const PROGRESSION_RANGE = 5;
+const PROGRESSION_RANGE = 10;
 const HIDDEN_STEP_VALUE = '..';
 
 const getProgression = () => {
