@@ -15,3 +15,7 @@
 # Запуск игры Brain Calc
 
 <a href="https://asciinema.org/a/244607"><img src="https://asciinema.org/a/244607.png" width="500"/></a>
+
+# Запуск игры Brain GCD
+
+<a href="https://asciinema.org/a/244619"><img src="https://asciinema.org/a/244619.png" width="500"/></a>
