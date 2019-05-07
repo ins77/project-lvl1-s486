@@ -1,17 +1,18 @@
 import start, { getRandomNumber } from '..';
 
-const gameFn = () => {
-  const randomNumber = getRandomNumber(100);
+const GAME_TITLE = 'Answer "yes" if number even otherwise answer "no".';
+const QUESTION_NUMBERS_RANGE = 100;
+const ANSWER_YES = 'yes';
+const ANSWER_NO = 'no';
+
+const getGameData = () => {
+  const randomNumber = getRandomNumber(QUESTION_NUMBERS_RANGE);
   const question = `${randomNumber}`;
-  const answer = randomNumber % 2 === 0 ? 'yes' : 'no';
+  const answer = randomNumber % 2 === 0 ? ANSWER_YES : ANSWER_NO;
 
   return { question, answer };
 };
 
-const startGame = () => {
-  const gameTitle = 'Answer "yes" if number even otherwise answer "no".';
-
-  return start(gameTitle, gameFn);
-};
+const startGame = () => start(GAME_TITLE, getGameData);
 
 export default startGame;

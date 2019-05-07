@@ -1,22 +1,28 @@
 import start, { getRandomNumber } from '..';
 
+const GAME_TITLE = 'What is the result of the expression?';
+const OPERATION_PLUS = '+';
+const OPERATION_MINUS = '-';
+const OPERATION_MULTIPLY = '*';
+const QUESTION_NUMBERS_RANGE = 100;
+
 const getActualAnswer = (randomNumberOne, randomNumberTwo, randomOperation) => {
   switch (randomOperation) {
-    case '*':
+    case OPERATION_MULTIPLY:
       return randomNumberOne * randomNumberTwo;
-    case '+':
+    case OPERATION_PLUS:
       return randomNumberOne + randomNumberTwo;
-    case '-':
+    case OPERATION_MINUS:
       return randomNumberOne - randomNumberTwo;
     default:
       return null;
   }
 };
 
-const gameFn = () => {
-  const randomNumberOne = getRandomNumber(100);
-  const randomNumberTwo = getRandomNumber(100);
-  const operations = ['*', '+', '-'];
+const getGameData = () => {
+  const randomNumberOne = getRandomNumber(QUESTION_NUMBERS_RANGE);
+  const randomNumberTwo = getRandomNumber(QUESTION_NUMBERS_RANGE);
+  const operations = [OPERATION_MULTIPLY, OPERATION_PLUS, OPERATION_MINUS];
   const randomOperation = operations[getRandomNumber(operations.length)];
   const question = `${randomNumberOne} ${randomOperation} ${randomNumberTwo}`;
   const answer = getActualAnswer(randomNumberOne, randomNumberTwo, randomOperation).toString();
@@ -24,10 +30,6 @@ const gameFn = () => {
   return { question, answer };
 };
 
-const startGame = () => {
-  const gameTitle = 'What is the result of the expression?';
-
-  return start(gameTitle, gameFn);
-};
+const startGame = () => start(GAME_TITLE, getGameData);
 
 export default startGame;

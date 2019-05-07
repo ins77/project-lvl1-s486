@@ -1,21 +1,11 @@
 import readlineSync from 'readline-sync';
 
-export const getRandomNumber = number => Math.floor(Math.random() * number);
-
 const NUMBER_OF_QUESTIONS = 3;
 const ANSWER_CORRECT = 'Correct!';
+const WELCOME_TEXT = 'Welcome to the Brain Games!';
+const QUESTION_NAME = 'May I have your name?';
 
-const sayWelcome = () => {
-  console.log('Welcome to the Brain Games!');
-};
-
-const sayGameRule = (str) => {
-  console.log(str);
-};
-
-const sayHello = (name) => {
-  console.log(`Hello, ${name}!\n`);
-};
+export const getRandomNumber = number => Math.floor(Math.random() * number);
 
 const getAnswerResultText = (realAnswer, actualAnswer, name) => {
   if (realAnswer === actualAnswer) {
@@ -25,45 +15,43 @@ const getAnswerResultText = (realAnswer, actualAnswer, name) => {
   return `"${realAnswer}" is wrong answer ;(. Correct answer was "${actualAnswer}". Let's try again, ${name}!`;
 };
 
-const startQuestions = (
-  name,
-  gameFn,
-  questionsNumber = NUMBER_OF_QUESTIONS,
-  value = ANSWER_CORRECT,
-  count = 1,
-) => {
-  if (value !== ANSWER_CORRECT) {
-    return null;
-  }
+const startQuestions = (name, gameFn) => {
+  const iter = (count, value) => {
+    if (value !== ANSWER_CORRECT) {
+      return null;
+    }
 
-  if (count > questionsNumber) {
-    console.log(`Congratulations, ${name}!`);
+    if (count > NUMBER_OF_QUESTIONS) {
+      console.log(`Congratulations, ${name}!`);
 
-    return null;
-  }
+      return null;
+    }
 
-  const { question, answer } = gameFn();
+    const { question, answer } = gameFn();
 
-  console.log(`Question: ${question}`);
+    console.log(`Question: ${question}`);
 
-  const realAnswer = readlineSync.question('Your answer: ');
-  const answerResult = getAnswerResultText(realAnswer, answer, name);
+    const realAnswer = readlineSync.question('Your answer: ');
+    const answerResult = getAnswerResultText(realAnswer, answer, name);
 
-  console.log(answerResult);
+    console.log(answerResult);
 
-  return startQuestions(name, gameFn, questionsNumber, answerResult, count + 1);
+    return iter(count + 1, answerResult);
+  };
+
+  return iter(1, ANSWER_CORRECT);
 };
 
 const start = (title, gameFn) => {
-  sayWelcome();
+  console.log(WELCOME_TEXT);
 
   if (title) {
-    sayGameRule(title);
+    console.log(title);
   }
 
-  const name = readlineSync.question('\nMay I have your name? ');
+  const name = readlineSync.question(`\n${QUESTION_NAME} `);
 
-  sayHello(name);
+  console.log(`Hello, ${name}!\n`);
 
   if (gameFn) {
     startQuestions(name, gameFn);

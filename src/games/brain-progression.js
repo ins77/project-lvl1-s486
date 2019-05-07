@@ -1,6 +1,7 @@
 import start, { getRandomNumber } from '..';
 
-const RANDOM_NUMBER_RANGE = 100;
+const GAME_TITLE = 'What number is missing in the progression?';
+const QUESTION_NUMBERS_RANGE = 100;
 const PROGRESSION_STEP = 2;
 const PROGRESSION_RANGE = 10;
 const HIDDEN_STEP_VALUE = '..';
@@ -14,7 +15,7 @@ const getProgression = () => {
     return iter(number + PROGRESSION_STEP, [...array, number]);
   };
 
-  return iter(getRandomNumber(RANDOM_NUMBER_RANGE), []);
+  return iter(getRandomNumber(QUESTION_NUMBERS_RANGE), []);
 };
 
 const getQuestion = (progression, hiddenStepNumber) => {
@@ -29,7 +30,7 @@ const getQuestion = (progression, hiddenStepNumber) => {
   ].join(' ');
 };
 
-const gameFn = () => {
+const getGameData = () => {
   const progression = getProgression();
   const hiddenStepNumber = getRandomNumber(progression.length);
   const question = getQuestion(progression, hiddenStepNumber);
@@ -38,10 +39,6 @@ const gameFn = () => {
   return { question, answer };
 };
 
-const startGame = () => {
-  const gameTitle = 'What number is missing in the progression?';
-
-  return start(gameTitle, gameFn);
-};
+const startGame = () => start(GAME_TITLE, getGameData);
 
 export default startGame;
