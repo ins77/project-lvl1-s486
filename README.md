@@ -23,3 +23,7 @@
 # Запуск игры Brain Progression
 
 <a href="https://asciinema.org/a/244648"><img src="https://asciinema.org/a/244648.png" width="500"/></a>
+
+# Запуск игры Brain Prime
+
+<a href="https://asciinema.org/a/244807"><img src="https://asciinema.org/a/244807.png" width="500"/></a>
