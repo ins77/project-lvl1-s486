@@ -24,7 +24,7 @@ const getQuestion = (progression, hiddenStepNumber) => (
   [
     ...progression.slice(0, hiddenStepNumber),
     hiddenStepValue,
-    ...progression.slice(hiddenStepNumber + 1, progression.length),
+    ...progression.slice(hiddenStepNumber + 1),
   ].join(' ')
 );
 
