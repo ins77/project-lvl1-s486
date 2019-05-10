@@ -1,7 +1,8 @@
-import start, { getRandomNumber } from '..';
+import start from '..';
+import getRandomNumber from '../utils';
 
-const GAME_TITLE = 'Find the greatest common divisor of given numbers.';
-const QUESTION_NUMBERS_RANGE = 100;
+const gameTitle = 'Find the greatest common divisor of given numbers.';
+const questionNumbersTotal = 100;
 
 const getActualAnswer = (numberFirst, numberSecond) => {
   const iter = (count) => {
@@ -18,14 +19,14 @@ const getActualAnswer = (numberFirst, numberSecond) => {
 };
 
 const getGameData = () => {
-  const randomNumberOne = getRandomNumber(QUESTION_NUMBERS_RANGE);
-  const randomNumberTwo = getRandomNumber(QUESTION_NUMBERS_RANGE);
+  const randomNumberOne = getRandomNumber(questionNumbersTotal);
+  const randomNumberTwo = getRandomNumber(questionNumbersTotal);
   const question = `${randomNumberOne} ${randomNumberTwo}`;
   const answer = getActualAnswer(randomNumberOne, randomNumberTwo).toString();
 
   return { question, answer };
 };
 
-const startGame = () => start(GAME_TITLE, getGameData);
+const startGame = () => start(gameTitle, getGameData);
 
 export default startGame;

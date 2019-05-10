@@ -1,33 +1,29 @@
 import readlineSync from 'readline-sync';
 
-const NUMBER_OF_QUESTIONS = 3;
-const ANSWER_CORRECT = 'Correct!';
-const WELCOME_TEXT = 'Welcome to the Brain Games!';
-const QUESTION_NAME = 'May I have your name?';
-
-export const getRandomNumber = number => Math.floor(Math.random() * number);
+const numberOfQuestions = 3;
+const answerCorrect = 'Correct!';
 
 const getAnswerResultText = (realAnswer, actualAnswer, name) => {
   if (realAnswer === actualAnswer) {
-    return ANSWER_CORRECT;
+    return answerCorrect;
   }
 
   return `"${realAnswer}" is wrong answer ;(. Correct answer was "${actualAnswer}". Let's try again, ${name}!`;
 };
 
-const startQuestions = (name, gameFn) => {
+const startQuestions = (name, getGameData) => {
   const iter = (count, value) => {
-    if (value !== ANSWER_CORRECT) {
+    if (value !== answerCorrect) {
       return null;
     }
 
-    if (count > NUMBER_OF_QUESTIONS) {
+    if (count > numberOfQuestions) {
       console.log(`Congratulations, ${name}!`);
 
       return null;
     }
 
-    const { question, answer } = gameFn();
+    const { question, answer } = getGameData();
 
     console.log(`Question: ${question}`);
 
@@ -39,23 +35,18 @@ const startQuestions = (name, gameFn) => {
     return iter(count + 1, answerResult);
   };
 
-  return iter(1, ANSWER_CORRECT);
+  return iter(1, answerCorrect);
 };
 
-const start = (title, gameFn) => {
-  console.log(WELCOME_TEXT);
+const start = (title, getGameData) => {
+  console.log('Welcome to the Brain Games!');
+  console.log(title);
 
-  if (title) {
-    console.log(title);
-  }
-
-  const name = readlineSync.question(`\n${QUESTION_NAME} `);
+  const name = readlineSync.question('\nMay I have your name? ');
 
   console.log(`Hello, ${name}!\n`);
 
-  if (gameFn) {
-    startQuestions(name, gameFn);
-  }
+  startQuestions(name, getGameData);
 };
 
 export default start;
