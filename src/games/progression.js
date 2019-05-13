@@ -1,12 +1,11 @@
 import start from '..';
-import getRandomNumber from '../utils';
+import getRandomNumberInRange from '../utils';
 
 const gameTitle = 'What number is missing in the progression?';
 const questionNumbersTotal = 100;
 const progressionStepsTotal = 10;
 const progressionStepsBottom = 1;
 const progressionValuesTotal = 10;
-const hiddenStepValue = '..';
 
 const getProgression = (begin, step, total) => {
   const iter = (number, array) => {
@@ -21,24 +20,20 @@ const getProgression = (begin, step, total) => {
 };
 
 const getQuestion = (progression, hiddenStepNumber) => (
-  [
-    ...progression.slice(0, hiddenStepNumber),
-    hiddenStepValue,
-    ...progression.slice(hiddenStepNumber + 1),
-  ].join(' ')
+  progression.map((item, index) => (
+    index === hiddenStepNumber ? '..' : item
+  )).join(' ')
 );
 
 const getGameData = () => {
-  const questionNumber = getRandomNumber(questionNumbersTotal);
-  const progressionStep = getRandomNumber(progressionStepsTotal, progressionStepsBottom);
+  const questionNumber = getRandomNumberInRange(questionNumbersTotal);
+  const progressionStep = getRandomNumberInRange(progressionStepsTotal, progressionStepsBottom);
   const progression = getProgression(questionNumber, progressionStep, progressionValuesTotal);
-  const hiddenStepNumber = getRandomNumber(progression.length);
+  const hiddenStepNumber = getRandomNumberInRange(progression.length);
   const question = getQuestion(progression, hiddenStepNumber);
   const answer = progression[hiddenStepNumber].toString();
 
   return { question, answer };
 };
 
-const startGame = () => start(gameTitle, getGameData);
-
-export default startGame;
+export default () => start(gameTitle, getGameData);

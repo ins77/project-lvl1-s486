@@ -1,5 +1,5 @@
 import start from '..';
-import getRandomNumber from '../utils';
+import getRandomNumberInRange from '../utils';
 
 const gameTitle = 'What is the result of the expression?';
 const operationPlus = '+';
@@ -22,15 +22,13 @@ const getActualAnswer = (operation, numberOne, numberTwo) => {
 };
 
 const getGameData = () => {
-  const randomNumberOne = getRandomNumber(questionNumbersTotal);
-  const randomNumberTwo = getRandomNumber(questionNumbersTotal);
-  const randomOperation = operations[getRandomNumber(operations.length)];
+  const randomNumberOne = getRandomNumberInRange(questionNumbersTotal);
+  const randomNumberTwo = getRandomNumberInRange(questionNumbersTotal);
+  const randomOperation = operations[getRandomNumberInRange(operations.length)];
   const question = `${randomNumberOne} ${randomOperation} ${randomNumberTwo}`;
   const answer = getActualAnswer(randomOperation, randomNumberOne, randomNumberTwo).toString();
 
   return { question, answer };
 };
 
-const startGame = () => start(gameTitle, getGameData);
-
-export default startGame;
+export default () => start(gameTitle, getGameData);

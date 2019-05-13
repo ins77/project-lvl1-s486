@@ -1,5 +1,5 @@
 import start from '..';
-import getRandomNumber from '../utils';
+import getRandomNumberInRange from '../utils';
 
 const gameTitle = 'Find the greatest common divisor of given numbers.';
 const questionNumbersTotal = 100;
@@ -19,14 +19,12 @@ const getActualAnswer = (numberFirst, numberSecond) => {
 };
 
 const getGameData = () => {
-  const randomNumberOne = getRandomNumber(questionNumbersTotal);
-  const randomNumberTwo = getRandomNumber(questionNumbersTotal);
+  const randomNumberOne = getRandomNumberInRange(questionNumbersTotal);
+  const randomNumberTwo = getRandomNumberInRange(questionNumbersTotal);
   const question = `${randomNumberOne} ${randomNumberTwo}`;
   const answer = getActualAnswer(randomNumberOne, randomNumberTwo).toString();
 
   return { question, answer };
 };
 
-const startGame = () => start(gameTitle, getGameData);
-
-export default startGame;
+export default () => start(gameTitle, getGameData);

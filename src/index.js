@@ -14,13 +14,13 @@ const getAnswerResultText = (realAnswer, actualAnswer, name) => {
 const startQuestions = (name, getGameData) => {
   const iter = (count, value) => {
     if (value !== answerCorrect) {
-      return null;
+      return;
     }
 
     if (count > numberOfQuestions) {
       console.log(`Congratulations, ${name}!`);
 
-      return null;
+      return;
     }
 
     const { question, answer } = getGameData();
@@ -32,13 +32,13 @@ const startQuestions = (name, getGameData) => {
 
     console.log(answerResult);
 
-    return iter(count + 1, answerResult);
+    iter(count + 1, answerResult);
   };
 
-  return iter(1, answerCorrect);
+  iter(1, answerCorrect);
 };
 
-const start = (title, getGameData) => {
+export default (title, getGameData) => {
   console.log('Welcome to the Brain Games!');
   console.log(title);
 
@@ -48,5 +48,3 @@ const start = (title, getGameData) => {
 
   startQuestions(name, getGameData);
 };
-
-export default start;

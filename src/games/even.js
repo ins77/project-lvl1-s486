@@ -1,21 +1,17 @@
 import start from '..';
-import getRandomNumber from '../utils';
+import getRandomNumberInRange from '../utils';
 
 const gameTitle = 'Answer "yes" if number even otherwise answer "no".';
 const questionNumbersTotal = 100;
-const answerYes = 'yes';
-const answerNo = 'no';
 
 const isEven = number => number % 2 === 0;
 
 const getGameData = () => {
-  const randomNumber = getRandomNumber(questionNumbersTotal);
+  const randomNumber = getRandomNumberInRange(questionNumbersTotal);
   const question = `${randomNumber}`;
-  const answer = isEven(randomNumber) ? answerYes : answerNo;
+  const answer = isEven(randomNumber) ? 'yes' : 'no';
 
   return { question, answer };
 };
 
-const startGame = () => start(gameTitle, getGameData);
-
-export default startGame;
+export default () => start(gameTitle, getGameData);

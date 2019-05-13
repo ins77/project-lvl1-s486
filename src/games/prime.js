@@ -1,14 +1,16 @@
 import start from '..';
-import getRandomNumber from '../utils';
+import getRandomNumberInRange from '../utils';
 
-const answerYes = 'yes';
-const answerNo = 'no';
 const questionNumbersTotal = 10;
-const questionNumbersBottom = 1;
+const questionNumbersBottom = -3;
 const gameTitle = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const isPrime = (number) => {
   const iter = (count) => {
+    if (number <= 1) {
+      return false;
+    }
+
     if (count > number / 2) {
       return true;
     }
@@ -23,16 +25,14 @@ const isPrime = (number) => {
   return iter(2);
 };
 
-const getActualAnswer = isNumberPrime => (isNumberPrime ? answerYes : answerNo);
+const getActualAnswer = isNumberPrime => (isNumberPrime ? 'yes' : 'no');
 
 const getGameData = () => {
-  const randomNumber = getRandomNumber(questionNumbersTotal, questionNumbersBottom);
+  const randomNumber = getRandomNumberInRange(questionNumbersTotal, questionNumbersBottom);
   const question = `${randomNumber}`;
   const answer = getActualAnswer(isPrime(randomNumber));
 
   return { question, answer };
 };
 
-const startGame = () => start(gameTitle, getGameData);
-
-export default startGame;
+export default () => start(gameTitle, getGameData);
